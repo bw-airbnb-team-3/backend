@@ -11,7 +11,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
-
+console.log('testing')
 server.get('/', (req, res) => {
   res.json({ message: "Server is up and running" })
 })
