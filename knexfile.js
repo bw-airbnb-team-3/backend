@@ -1,15 +1,14 @@
-// Update with your config settings.
+require('dotenv').config();
+
 module.exports = {
   development: {
-    client: 'mysql',
-    connection: {
-      host: '127.0.0.1',
-      user: 'root',
-      password: 'root',
-      database: 'airbnb',
-      socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+    client: 'pg',
+    connection: process.env.DB_URL,
+    migrations: {
+      directory: './data/migrations',
     },
-    debug: true
-  }
-};
+    seeds: { directory: './data/seeds' },
+  },
 
+  
+};
