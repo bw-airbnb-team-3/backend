@@ -2,10 +2,8 @@ const db = require("../dbConfig");
 
 function addUser(user) {
   return db("users")
-    .insert(user)
-    .then(res => {
-      return { id: res[0] };
-    });
+    .returning(["id", "username", "password"])
+    .insert(user);
 }
 
 function findBy(key) {

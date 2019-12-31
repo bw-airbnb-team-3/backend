@@ -6,7 +6,7 @@ const router = require("express").Router();
 
 router.post("/register", (req, res) => {
   const creds = req.body;
-
+  
   const hash = bcjs.hashSync(creds.password, 8);
   creds.password = hash;
   db.addUser(creds)
@@ -51,7 +51,7 @@ function generateToken(user) {
     expiresIn: "1hr"
   };
 
-  return jwt.sign(payload, "whatAboutSecondBreakfast?", options);
+  return jwt.sign(payload, process.env.SECRET, options);
 }
 
 module.exports = router;
