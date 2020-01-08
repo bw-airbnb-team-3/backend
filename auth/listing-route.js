@@ -35,4 +35,25 @@ router.get("/getListings", async (req, res) => {
 });
 
 
+router.delete("/deleteListing", async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    if (!id ) {
+      return res.status(400).json({
+        error: true,
+        message: 'Listing id is required to make a deletion',
+      });
+    }
+
+    const result = await db('listings').where({id: id}).del();
+    return res.status(200).json(result);
+  } catch (err) {
+      console.log('Something went wrong!');
+      return res
+        .status(500)
+        .json({ error: true, message: 'Error deleting the listing' });
+  }
+});
+
 module.exports = router;
