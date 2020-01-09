@@ -4,6 +4,7 @@ const helmet = require('helmet');
 
 const authRouter = require('../auth/auth-router');
 const listingRouter = require('../auth/listing-route');
+const dsRouter = require('../auth/ds-router');
 const authenticate = require('../auth/auth-middleware.js');
 
 const server = express();
@@ -13,6 +14,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api', authRouter);
+server.use('/api/list', dsRouter);
 server.use('/api/auth', authenticate, listingRouter);
 
 server.get('/', (req, res) => {

@@ -34,7 +34,6 @@ router.get("/getListings", async (req, res) => {
   }
 });
 
-
 router.delete("/deleteListing", async (req, res) => {
   try {
     const { id } = req.body;
