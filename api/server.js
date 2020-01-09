@@ -4,6 +4,7 @@ const helmet = require('helmet');
 
 const authRouter = require('../auth/auth-router');
 const listingRouter = require('../auth/listing-route');
+const authenticate = require('../auth/auth-middleware.js');
 
 const server = express();
 
@@ -12,7 +13,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api', authRouter);
-server.use('/api/auth', listingRouter);
+server.use('/api/auth', authenticate, listingRouter);
 
 server.get('/', (req, res) => {
   res.json({ message: "Server is up and running!!"  })
